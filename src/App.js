@@ -1,72 +1,53 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-const app = (props) => {
-    const [personState, setPersonState] = useState({
-        persons: [
-            { name: 'A', age: 1 },
-            { name: 'B', age: 2 },
-            { name: 'C', age: 3 },
-        ],
+class App extends Component {
+  state = {
+    persons: [
+      { name: 'Max', age: 28 },
+      { name: 'Manu', age: 29 },
+      { name: 'Stephanie', age: 26 }
+    ],
+    otherState: 'some other value'
+  };
+
+  switchNameHandler = () => {
+    // console.log('Was clicked!');
+    // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
+    this.setState({
+      persons: [
+        { name: 'Maximilian', age: 28 },
+        { name: 'Manu', age: 29 },
+        { name: 'Stephanie', age: 27 }
+      ]
     });
+  };
 
-    const clickMeHandler = () => {
-        setPersonState({
-            persons: [
-                { name: 'Ais', age: 10 },
-                { name: 'B', age: 20 },
-                { name: 'C', age: 40 },
-            ],
-        });
-    };
-
+  render() {
     return (
-        <div className="App">
-            <h1>Hi, I am learning React</h1>
-            <p>It works</p>
-            <Person
-                name={personState.persons[0].name}
-                age={personState.persons[0].age}>
-                I am the children prop
-            </Person>
-
-            <button onClick={clickMeHandler}>Click me</button>
-            <Person
-                name={personState.persons[1].name}
-                age={personState.persons[1].age}
-            />
-            <Person
-                name={personState.persons[2].name}
-                age={personState.persons[2].age}
-            />
-        </div>
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+        >
+          My Hobbies: Racing
+        </Person>
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+        />
+      </div>
     );
-};
+    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
+  }
+}
 
-export default app;
-
-// class App extends Component {
-//     state = {
-//         persons: [
-//             { name: 'A', age: 1 },
-//             { name: 'B', age: 2 },
-//             { name: 'C', age: 3 },
-//         ],
-//     };
-
-//     clickMeHandler = () => {
-//         console.log('I thought you wont click');
-//         this.setState({
-//             persons: [
-//                 { name: 'Ais', age: 10 },
-//                 { name: 'B', age: 20 },
-//                 { name: 'C', age: 30 },
-//             ],
-//         });
-//     };
-
-//     render() {
-
-//     }
-// }
+export default App;
