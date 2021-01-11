@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import './Person/Person.css';
 
 class App extends Component {
     state = {
@@ -36,11 +37,20 @@ class App extends Component {
         });
     };
     render() {
+        const designStyle = {
+            backgroundColor: 'white',
+            font: 'inherit',
+            border: '1px solid green',
+            padding: '8px',
+            cursor: 'pointer',
+        };
         return (
             <div className="App">
                 <h1>Hi, I'm a React App</h1>
                 <p>This is really working!</p>
-                <button onClick={() => this.switchNameHandler('40')}>
+                <button
+                    style={designStyle}
+                    onClick={() => this.switchNameHandler('40')}>
                     Switch Name
                 </button>
                 <Person
